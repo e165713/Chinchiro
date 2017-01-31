@@ -7,10 +7,45 @@ public class Player {
     private int dice1;
     private int dice2;
     private int dice3;
+    private int dice_point;
+    private int[] dice = {0,0,0};
 
-    public void Throw(){
-       dice1 = (int)(Math.random()*6)+1;
-        System.out.printf("%d",dice1);
+    public int[] Throw(){
+        dice1 = (int)(Math.random()*6)+1;
+        dice2 = (int)(Math.random()*6)+1;
+        dice3 = (int)(Math.random()*6)+1;
+        sort();
+        dice[0] = dice1;
+        dice[1] = dice2;
+        dice[2] = dice3;
+        return dice;
+    }
+
+    public void sort(){
+        int pro = 0;
+        if(dice2 > dice3){
+            pro = dice3;
+            dice3 = dice2;
+            dice2 = pro;
+        }
+        if(dice1 > dice2){
+            pro = dice2;
+            dice2 = dice1;
+            dice1 = pro;
+            sort();
+        }
+    }
+
+    public int point(int dice1,int dice2,int dice3){
+        if(dice1 == dice2){
+            if(dice1 == dice3){
+                if(dice1 == 1) dice_point = 9;
+                else dice_point = 8;
+            }
+        }else if((dice1 == dice2) || (dice2 == dice3)){
+
+        }
+        return dice_point;
     }
 
     public int getDice1() {
@@ -19,6 +54,21 @@ public class Player {
 
     public void setDice1(int dice1) {
         this.dice1 = dice1;
+    }
+
+    public int getDice2() {
+        return dice2;
+    }
+
+    public void setDice2(int dice2) {
+        this.dice2 = dice2;
+    }
+    public int getDice3() {
+        return dice3;
+    }
+
+    public void setDice3(int dice3) {
+        this.dice3 = dice3;
     }
 
 }
