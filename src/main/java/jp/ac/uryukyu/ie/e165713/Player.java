@@ -4,14 +4,17 @@ package jp.ac.uryukyu.ie.e165713;
  * Created by ichikitakahiro on 2017/01/18.
  */
 public class Player {
-    private int dice1;
-    private int dice2;
-    private int dice3;
-    private int dice_point;
-    private String kind_dice;
-    private int[] dice = {0,0,0};
+    int dice1;
+    int dice2;
+    int dice3;
+    int dice_point;
+    int[] dice = {0,0,0};
 
     public int[] Throw(){
+        /**
+         * 三つのサイコロの目を決めるメソッド。
+         * diceという配列に保存することで、三つの目の数を返している
+         */
         dice1 = (int)(Math.random()*6)+1;
         dice2 = (int)(Math.random()*6)+1;
         dice3 = (int)(Math.random()*6)+1;
@@ -23,6 +26,10 @@ public class Player {
     }
 
     public void sort(){
+        /**
+         * 出てきた三つの目をプログラミング上で、
+         * 処理しやすいように並び変えるメソッド。
+         */
         int pro = 0;
         if(dice2 > dice3){
             pro = dice3;
@@ -33,11 +40,14 @@ public class Player {
             pro = dice2;
             dice2 = dice1;
             dice1 = pro;
-            sort();
+            sort();//一度の実行では並び替えきれない場合があるので再起している。
         }
     }
 
     public int point(){
+        /**
+         * 三つの目の組み合わせのポイントを決めるメソッド。
+         */
         if(dice1 == dice3){
             if(dice1 == 1) dice_point = 9;
                 else dice_point = 8;
@@ -54,28 +64,4 @@ public class Player {
         }
         return dice_point;
     }
-
-    public int getDice1() {
-        return dice1;
-    }
-
-    public void setDice1(int dice1) {
-        this.dice1 = dice1;
-    }
-
-    public int getDice2() {
-        return dice2;
-    }
-
-    public void setDice2(int dice2) {
-        this.dice2 = dice2;
-    }
-    public int getDice3() {
-        return dice3;
-    }
-
-    public void setDice3(int dice3) {
-        this.dice3 = dice3;
-    }
-
 }
