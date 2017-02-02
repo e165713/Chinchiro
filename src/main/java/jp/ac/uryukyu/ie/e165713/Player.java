@@ -8,6 +8,7 @@ public class Player {
     private int dice2;
     private int dice3;
     private int dice_point;
+    private String kind_dice;
     private int[] dice = {0,0,0};
 
     public int[] Throw(){
@@ -36,14 +37,20 @@ public class Player {
         }
     }
 
-    public int point(int dice1,int dice2,int dice3){
-        if(dice1 == dice2){
-            if(dice1 == dice3){
-                if(dice1 == 1) dice_point = 9;
+    public int point(){
+        if(dice1 == dice3){
+            if(dice1 == 1) dice_point = 9;
                 else dice_point = 8;
-            }
-        }else if((dice1 == dice2) || (dice2 == dice3)){
-
+        }else if(dice1 == dice2) {
+            dice_point = dice3;
+        } else if(dice2 == dice3) {
+            dice_point = dice1;
+        }else if(dice1 == 4 && dice2 == 5 && dice3 == 6 ){
+            dice_point = 7;
+        }else if(dice1 == 1 && dice2 == 2 && dice3 == 3 ){
+            dice_point = -1;
+        }else{
+            dice_point = 0;
         }
         return dice_point;
     }
